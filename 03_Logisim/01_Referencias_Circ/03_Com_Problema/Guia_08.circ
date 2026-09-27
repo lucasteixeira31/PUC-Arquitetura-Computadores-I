@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="Logisim-evolution" version="2.14.8">
+  <lib desc="#Wiring" name="0"/>
+  <lib desc="#Gates" name="1"/>
+  <lib desc="#Plexers" name="2"/>
+  <lib desc="#Arithmetic" name="3"/>
+  <main name="Guia_08"/>
+  <options/>
+  <mappings/>
+  <toolbar/>
+  <circuit name="Guia_08">
+    <a name="appearance" val="classic"/>
+    <comp lib="0" loc="(100,100)" name="Text">
+      <a name="text" val="Guia 08 - Arquitetura de Computadores I - Matricula 897891"/>
+    </comp>
+    <comp lib="0" loc="(120,180)" name="Pin">
+      <a name="label" val="ENTRADAS_5_BITS"/>
+      <a name="width" val="5"/>
+      <a name="output" val="false"/>
+    </comp>
+    <comp lib="0" loc="(500,180)" name="Pin">
+      <a name="label" val="SAIDA_5_BITS"/>
+      <a name="width" val="5"/>
+      <a name="output" val="true"/>
+    </comp>
+  </circuit>
+  <circuit name="FULL_ADDER_1BIT"/>
+  <circuit name="SOMADOR_5BITS"/>
+  <circuit name="SUBTRATOR_5BITS"/>
+  <circuit name="COMPARADOR_5BITS"/>
+  <circuit name="COMPLEMENTO_2_5BITS"/>
+</project>

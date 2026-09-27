@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project source="2.7.1" version="1.0">
+ <lib desc="#Wiring" name="0"/>
+ <lib desc="#Gates" name="1"/>
+ <lib desc="#Arithmetic" name="3"/>
+ <lib desc="#Base" name="6"/>
+
+ <main name="main"/>
+
+ <circuit name="main">
+  <a name="circuit" val="main"/>
+  <comp lib="6" loc="(50,50)" name="Text">
+   <a name="text" val="Guia 08 - Unidade Logica e Aritmetica"/>
+  </comp>
+  <comp lib="6" loc="(50,90)" name="Text">
+   <a name="text" val="Somador, Subtrator, Comparadores e Complemento de 2"/>
+  </comp>
+ </circuit>
+
+ <circuit name="Guia_0801">
+  <a name="circuit" val="Guia_0801"/>
+  <comp lib="6" loc="(50,50)" name="Text">
+   <a name="text" val="Guia_0801 - Somador completo 5 bits"/>
+  </comp>
+  <comp lib="6" loc="(50,90)" name="Text">
+   <a name="text" val="5 Full Adders em cascata"/>
+  </comp>
+ </circuit>
+
+ <circuit name="Guia_0802">
+  <a name="circuit" val="Guia_0802"/>
+  <comp lib="6" loc="(50,50)" name="Text">
+   <a name="text" val="Guia_0802 - Subtrator completo 5 bits"/>
+  </comp>
+ </circuit>
+
+ <circuit name="Guia_0803">
+  <a name="circuit" val="Guia_0803"/>
+  <comp lib="6" loc="(50,50)" name="Text">
+   <a name="text" val="Guia_0803 - Comparador igualdade 5 bits"/>
+  </comp>
+ </circuit>
+
+ <circuit name="Guia_0804">
+  <a name="circuit" val="Guia_0804"/>
+  <comp lib="6" loc="(50,50)" name="Text">
+   <a name="text" val="Guia_0804 - Comparador desigualdade 5 bits"/>
+  </comp>
+ </circuit>
+
+ <circuit name="Guia_0805">
+  <a name="circuit" val="Guia_0805"/>
+  <comp lib="6" loc="(50,50)" name="Text">
+   <a name="text" val="Guia_0805 - Complemento de 2 5 bits"/>
+  </comp>
+ </circuit>
+
+ <circuit name="halfAdder">
+  <a name="circuit" val="halfAdder"/>
+  <comp lib="6" loc="(50,50)" name="Text">
+   <a name="text" val="XOR + AND"/>
+  </comp>
+ </circuit>
+
+ <circuit name="fullAdder">
+  <a name="circuit" val="fullAdder"/>
+  <comp lib="6" loc="(50,50)" name="Text">
+   <a name="text" val="2 Half Adders + OR"/>
+  </comp>
+ </circuit>
+
+</project>
