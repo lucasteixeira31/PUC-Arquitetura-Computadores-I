@@ -1,0 +1,24 @@
+Guia_0605 - Tests
+
+Circuito original:
+s = w1 + w2
+
+Forma canonica:
+s(x,y,z) = Sum m(4,5,6)
+
+Forma simplificada:
+s = x.y' + x.z'
+s = x.(y' + z')
+
+x y z | Original Simplificada
+-----------------------------
+0 0 0 |    0         0
+0 0 1 |    0         0
+0 1 0 |    0         0
+0 1 1 |    0         0
+1 0 0 |    1         1
+1 0 1 |    1         1
+1 1 0 |    1         1
+1 1 1 |    0         0
+
+Mintermos esperados com s = 1: 4, 5 e 6

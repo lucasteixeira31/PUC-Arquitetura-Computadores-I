@@ -1,0 +1,17 @@
+Pontificia Universidade Catolica de Minas Gerais
+Arquitetura de Computadores I
+
+Matricula: 897891
+Nome: Lucas Junio Quirino Teixeira
+
+Resultado da execucao de Guia_0105.v
+
+Guia_0105 - Tests
+a.) PUC-Minas =
+50 55 43 2d 4d 69 6e 61 73
+b.) 2026-02 =
+32 30 32 36 2d 30 32
+c.) M. G. =
+01001101 00101110 00100000 01000111 00101110
+d.) 124 101 122 104 105(8) = TARDE
+e.) 4D 61 6E 68 61(16) = Manha

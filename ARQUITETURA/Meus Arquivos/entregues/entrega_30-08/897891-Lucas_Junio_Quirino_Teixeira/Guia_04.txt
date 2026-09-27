@@ -1,0 +1,608 @@
+Pontifícia Universidade Católica de Minas Gerais
+Arquitetura de Computadores I
+
+Guia 04 - Introdução à Álgebra de Boole
+
+Matrícula: 897891
+Nome: Lucas Junio Quirino Teixeira
+
+
+01.) Construir a tabela-verdade para as proposições
+
+01a.)
+
+a.) x . ( y + z' )'
+
+Primeiro avaliamos a expressão interna e aplicamos De Morgan:
+
+(y + z')' = y' . z
+
+Então:
+
+f = x . y' . z
+
+Construindo a tabela-verdade completa:
+
+n    xyz    y    z'    y+z'    (y+z')'    f
+0    000     0    1      1         0        0
+1    001     0    0      0         1        0
+2    010     1    1      1         0        0
+3    011     1    0      1         0        0
+4    100     0    1      1         0        0
+5    101     0    0      0         1        1
+6    110     1    1      1         0        0
+7    111     1    0      1         0        0
+
+O único resultado igual a 1 ocorre no mintermo 5.
+
+resultado:
+
+f(x,y,z) = x . (y + z')' = x . y' . z = SoP(5)
+
+
+b.) ( x + y' )' . z
+
+Aplicando De Morgan:
+
+(x + y')' = x' . y
+
+Tabela-verdade:
+
+n    xyz    f
+0    000     0
+1    001     0
+2    010     0
+3    011     1
+4    100     0
+5    101     0
+6    110     0
+7    111     0
+
+resultado:
+
+f(x,y,z) = x' . y . z = SoP(3)
+
+
+c.) ( x' . y )' . z'
+
+Aplicando De Morgan:
+
+(x' . y)' = x + y'
+
+Tabela-verdade:
+
+n    xyz    f
+0    000     1
+1    001     0
+2    010     0
+3    011     0
+4    100     1
+5    101     0
+6    110     1
+7    111     0
+
+resultado:
+
+f(x,y,z) = (x + y') . z' = SoP(0,4,6)
+
+
+d.) ( x' . y )' . z
+
+Aplicando De Morgan:
+
+(x' . y)' = x + y'
+
+Tabela-verdade:
+
+n    xyz    f
+0    000     0
+1    001     1
+2    010     0
+3    011     0
+4    100     0
+5    101     1
+6    110     0
+7    111     1
+
+resultado:
+
+f(x,y,z) = (x + y') . z = SoP(1,5,7)
+
+
+e.) ( x' + y' ) . ( y + z' )'
+
+Aplicando De Morgan:
+
+(y + z')' = y' . z
+
+(x' + y') . y' . z = y' . z
+
+Tabela-verdade:
+
+n    xyz    f
+0    000     0
+1    001     1
+2    010     0
+3    011     0
+4    100     0
+5    101     1
+6    110     0
+7    111     0
+
+resultado:
+
+f(x,y,z) = y' . z = SoP(1,5)
+
+
+
+02.) Simplificar as expressões abaixo pelas propriedades da álgebra de Boole
+
+02a.)
+
+a.) x . ( x' + y )'
+
+Aplicando De Morgan:
+
+(x' + y)' = x . y'
+
+Substituindo:
+
+x . (x . y') = x . y'          (idempotência: x.x = x)
+
+resultado:
+
+x . (x' + y)' = x . y'
+
+Verificação pela tabela-verdade:
+
+n    xy    original    simplificada
+0    00      0             0
+1    01      0             0
+2    10      1             1
+3    11      0             0
+
+
+b.) ( x' + y' ) + ( x . y )
+
+x' + y' + x.y
+= y' + (x' + x.y)
+= y' + (x' + y)                (distributiva/absorção)
+= x' + (y' + y)
+= x' + 1                       (complementar)
+= 1                            (identidade)
+
+resultado:
+
+(x' + y') + (x . y) = 1
+
+Verificação pela tabela-verdade:
+
+n    xy    original    simplificada
+0    00      1             1
+1    01      1             1
+2    10      1             1
+3    11      1             1
+
+
+c.) ( x . y )' . ( x + y' )
+
+(x.y)' = x' + y'               (De Morgan)
+
+(x' + y') . (x + y')
+= y' + (x'.x)                  (distributiva)
+= y' + 0                       (complementar)
+= y'                           (identidade)
+
+resultado:
+
+(x . y)' . (x + y') = y'
+
+Verificação pela tabela-verdade:
+
+n    xy    original    simplificada
+0    00      1             1
+1    01      0             0
+2    10      1             1
+3    11      0             0
+
+
+d.) ( x' . y )' + ( x + y' )'
+
+(x'.y)' = x + y'               (De Morgan)
+(x+y')' = x'.y                 (De Morgan)
+
+(x + y') + x'.y
+= y' + (x + x'.y)
+= y' + (x + y)                 (distributiva/absorção)
+= x + (y' + y)
+= x + 1
+= 1
+
+resultado:
+
+(x' . y)' + (x + y')' = 1
+
+Verificação pela tabela-verdade:
+
+n    xy    original    simplificada
+0    00      1             1
+1    01      1             1
+2    10      1             1
+3    11      1             1
+
+
+e.) ( y + x' + z' ) . ( y' + x + z )'
+
+(y' + x + z)' = y . x' . z'   (De Morgan)
+
+(y + x' + z') . y . x' . z'
+= y.x'.z'                      (absorção)
+
+resultado:
+
+(y + x' + z') . (y' + x + z)' = y . x' . z'
+
+Verificação pela tabela-verdade:
+
+n    xyz    original    simplificada
+0    000       0             0
+1    001       0             0
+2    010       1             1
+3    011       0             0
+4    100       0             0
+5    101       0             0
+6    110       0             0
+7    111       0             0
+
+
+
+03.) Montar as tabelas-verdades expressas pelas somas de produtos abaixo
+
+03a.)
+
+a.) f(x,y,z) = Σ m (1, 3, 4, 7) = SoP(1,3,4,7)
+
+Os índices indicam exatamente os mintermos em que a função deve valer 1.
+Para três variáveis, escrevemos o índice em binário na ordem xyz.
+
+m1 = 001 -> x'.y'.z
+m3 = 011 -> x'.y.z
+m4 = 100 -> x.y'.z'
+m7 = 111 -> x.y.z
+
+f = x'.y'.z + x'.y.z + x.y'.z' + x.y.z
+
+Tabela-verdade:
+
+m    xyz    mintermo                 f
+0    000    x'.y'.z'                 0
+1    001    x'.y'.z = m1             1
+2    010    x'.y.z'                  0
+3    011    x'.y.z = m3              1
+4    100    x.y'.z' = m4             1
+5    101    x.y'.z                   0
+6    110    x.y.z'                   0
+7    111    x.y.z = m7               1
+
+resultado:
+
+SoP(1,3,4,7)
+
+
+b.) f(x,y,z) = Σ m (2, 3, 5, 6) = SoP(2,3,5,6)
+
+f = x'.y.z' + x'.y.z + x.y'.z + x.y.z'
+
+Tabela-verdade:
+
+m    xyz    mintermo                 f
+0    000    x'.y'.z'                 0
+1    001    x'.y'.z                  0
+2    010    x'.y.z' = m2             1
+3    011    x'.y.z = m3              1
+4    100    x.y'.z'                  0
+5    101    x.y'.z = m5              1
+6    110    x.y.z' = m6              1
+7    111    x.y.z                    0
+
+resultado:
+
+SoP(2,3,5,6)
+
+
+c.) f(x,y,w,z) = Σ m (1, 2, 4, 6, 7, 13, 15) = SoP(1,2,4,6,7,13,15)
+
+f = x'.y'.w'.z + x'.y'.w.z' + x'.y.w'.z' + x'.y.w.z' + x'.y.w.z + x.y.w'.z + x.y.w.z
+
+Tabela-verdade:
+
+m    xywz    mintermo                f
+0    0000    x'.y'.w'.z'              0
+1    0001    x'.y'.w'.z = m1          1
+2    0010    x'.y'.w.z' = m2          1
+3    0011    x'.y'.w.z                0
+4    0100    x'.y.w'.z' = m4          1
+5    0101    x'.y.w'.z                0
+6    0110    x'.y.w.z' = m6           1
+7    0111    x'.y.w.z = m7            1
+8    1000    x.y'.w'.z'               0
+9    1001    x.y'.w'.z                0
+10   1010    x.y'.w.z'                0
+11   1011    x.y'.w.z                 0
+12   1100    x.y.w'.z'                0
+13   1101    x.y.w'.z = m13           1
+14   1110    x.y.w.z'                 0
+15   1111    x.y.w.z = m15            1
+
+resultado:
+
+SoP(1,2,4,6,7,13,15)
+
+
+d.) f(x,y,w,z) = Σ m (0, 2, 4, 6, 12, 13, 14) = SoP(0,2,4,6,12,13,14)
+
+f = x'.y'.w'.z' + x'.y'.w.z' + x'.y.w'.z' + x'.y.w.z' + x.y.w'.z' + x.y.w'.z + x.y.w.z'
+
+Tabela-verdade:
+
+m    xywz    mintermo                f
+0    0000    x'.y'.w'.z' = m0         1
+1    0001    x'.y'.w'.z               0
+2    0010    x'.y'.w.z' = m2          1
+3    0011    x'.y'.w.z                0
+4    0100    x'.y.w'.z' = m4          1
+5    0101    x'.y.w'.z                0
+6    0110    x'.y.w.z' = m6           1
+7    0111    x'.y.w.z                 0
+8    1000    x.y'.w'.z'               0
+9    1001    x.y'.w'.z                0
+10   1010    x.y'.w.z'                0
+11   1011    x.y'.w.z                 0
+12   1100    x.y.w'.z' = m12          1
+13   1101    x.y.w'.z = m13           1
+14   1110    x.y.w.z' = m14           1
+15   1111    x.y.w.z                  0
+
+resultado:
+
+SoP(0,2,4,6,12,13,14)
+
+
+e.) f(x,y,w,z) = Σ m (0, 1, 8, 9, 12, 15) = SoP(0,1,8,9,12,15)
+
+f = x'.y'.w'.z' + x'.y'.w'.z + x.y'.w'.z' + x.y'.w'.z + x.y.w'.z' + x.y.w.z
+
+Tabela-verdade:
+
+m    xywz    mintermo                f
+0    0000    x'.y'.w'.z' = m0         1
+1    0001    x'.y'.w'.z = m1          1
+2    0010    x'.y'.w.z'               0
+3    0011    x'.y'.w.z                0
+4    0100    x'.y.w'.z'               0
+5    0101    x'.y.w'.z                0
+6    0110    x'.y.w.z'                0
+7    0111    x'.y.w.z                 0
+8    1000    x.y'.w'.z' = m8          1
+9    1001    x.y'.w'.z = m9           1
+10   1010    x.y'.w.z'                0
+11   1011    x.y'.w.z                 0
+12   1100    x.y.w'.z' = m12          1
+13   1101    x.y.w'.z                 0
+14   1110    x.y.w.z'                 0
+15   1111    x.y.w.z = m15            1
+
+resultado:
+
+SoP(0,1,8,9,12,15)
+
+
+
+04.) Montar as expressões PoS equivalentes aos produtos das somas abaixo
+
+04a.)
+
+a.) F(X,Y,Z) = π M (1, 2, 4, 6) = PoS(1,2,4,6)
+
+Os índices indicam os MAXTERMOS em que a função deve valer 0.
+Em um MAXTERMO, um bit 0 usa a variável sem negação e um bit 1 usa a variável negada.
+
+M1 = 001 -> (X+Y+Z')
+M2 = 010 -> (X+Y'+Z)
+M4 = 100 -> (X'+Y+Z)
+M6 = 110 -> (X'+Y'+Z)
+
+F = (X+Y+Z') . (X+Y'+Z) . (X'+Y+Z) . (X'+Y'+Z)
+
+Tabela-verdade:
+
+M    XYZ    MAXTERMO                 F
+0    000    (X+Y+Z)                      1
+1    001    (X+Y+Z') = M1                0
+2    010    (X+Y'+Z) = M2                0
+3    011    (X+Y'+Z')                    1
+4    100    (X'+Y+Z) = M4                0
+5    101    (X'+Y+Z')                    1
+6    110    (X'+Y'+Z) = M6               0
+7    111    (X'+Y'+Z')                   1
+
+resultado:
+
+PoS(1,2,4,6)
+
+
+b.) F(X,Y,Z) = π M (0, 2, 3, 7) = PoS(0,2,3,7)
+
+F = (X+Y+Z) . (X+Y'+Z) . (X+Y'+Z') . (X'+Y'+Z')
+
+Tabela-verdade:
+
+M    XYZ    MAXTERMO                 F
+0    000    (X+Y+Z) = M0                 0
+1    001    (X+Y+Z')                     1
+2    010    (X+Y'+Z) = M2                0
+3    011    (X+Y'+Z') = M3               0
+4    100    (X'+Y+Z)                     1
+5    101    (X'+Y+Z')                    1
+6    110    (X'+Y'+Z)                    1
+7    111    (X'+Y'+Z') = M7              0
+
+resultado:
+
+PoS(0,2,3,7)
+
+
+c.) F(X,Y,W,Z) = π M (0, 1, 2, 6, 7, 8, 11, 13) = PoS(0,1,2,6,7,8,11,13)
+
+F = (X+Y+W+Z) . (X+Y+W+Z') . (X+Y+W'+Z) . (X+Y'+W'+Z) . (X+Y'+W'+Z') . (X'+Y+W+Z) . (X'+Y+W'+Z') . (X'+Y'+W+Z')
+
+Tabela-verdade:
+
+M    XYWZ    MAXTERMO                F
+0    0000    (X+Y+W+Z) = M0               0
+1    0001    (X+Y+W+Z') = M1              0
+2    0010    (X+Y+W'+Z) = M2              0
+3    0011    (X+Y+W'+Z')                  1
+4    0100    (X+Y'+W+Z)                   1
+5    0101    (X+Y'+W+Z')                  1
+6    0110    (X+Y'+W'+Z) = M6             0
+7    0111    (X+Y'+W'+Z') = M7            0
+8    1000    (X'+Y+W+Z) = M8              0
+9    1001    (X'+Y+W+Z')                  1
+10   1010    (X'+Y+W'+Z)                  1
+11   1011    (X'+Y+W'+Z') = M11           0
+12   1100    (X'+Y'+W+Z)                  1
+13   1101    (X'+Y'+W+Z') = M13           0
+14   1110    (X'+Y'+W'+Z)                 1
+15   1111    (X'+Y'+W'+Z')                1
+
+resultado:
+
+PoS(0,1,2,6,7,8,11,13)
+
+
+d.) F(X,Y,W,Z) = π M (1, 2, 4, 6, 8, 12, 14) = PoS(1,2,4,6,8,12,14)
+
+F = (X+Y+W+Z') . (X+Y+W'+Z) . (X+Y'+W+Z) . (X+Y'+W'+Z) . (X'+Y+W+Z) . (X'+Y'+W+Z) . (X'+Y'+W'+Z)
+
+Tabela-verdade:
+
+M    XYWZ    MAXTERMO                F
+0    0000    (X+Y+W+Z)                    1
+1    0001    (X+Y+W+Z') = M1              0
+2    0010    (X+Y+W'+Z) = M2              0
+3    0011    (X+Y+W'+Z')                  1
+4    0100    (X+Y'+W+Z) = M4              0
+5    0101    (X+Y'+W+Z')                  1
+6    0110    (X+Y'+W'+Z) = M6             0
+7    0111    (X+Y'+W'+Z')                 1
+8    1000    (X'+Y+W+Z) = M8              0
+9    1001    (X'+Y+W+Z')                  1
+10   1010    (X'+Y+W'+Z)                  1
+11   1011    (X'+Y+W'+Z')                 1
+12   1100    (X'+Y'+W+Z) = M12            0
+13   1101    (X'+Y'+W+Z')                 1
+14   1110    (X'+Y'+W'+Z) = M14           0
+15   1111    (X'+Y'+W'+Z')                1
+
+resultado:
+
+PoS(1,2,4,6,8,12,14)
+
+
+e.) F(X,Y,W,Z) = π M (0, 1, 2, 4, 7, 12, 15) = PoS(0,1,2,4,7,12,15)
+
+F = (X+Y+W+Z) . (X+Y+W+Z') . (X+Y+W'+Z) . (X+Y'+W+Z) . (X+Y'+W'+Z') . (X'+Y'+W+Z) . (X'+Y'+W'+Z')
+
+Tabela-verdade:
+
+M    XYWZ    MAXTERMO                F
+0    0000    (X+Y+W+Z) = M0               0
+1    0001    (X+Y+W+Z') = M1              0
+2    0010    (X+Y+W'+Z) = M2              0
+3    0011    (X+Y+W'+Z')                  1
+4    0100    (X+Y'+W+Z) = M4              0
+5    0101    (X+Y'+W+Z')                  1
+6    0110    (X+Y'+W'+Z)                  1
+7    0111    (X+Y'+W'+Z') = M7            0
+8    1000    (X'+Y+W+Z)                   1
+9    1001    (X'+Y+W+Z')                  1
+10   1010    (X'+Y+W'+Z)                  1
+11   1011    (X'+Y+W'+Z')                 1
+12   1100    (X'+Y'+W+Z) = M12            0
+13   1101    (X'+Y'+W+Z')                 1
+14   1110    (X'+Y'+W'+Z)                 1
+15   1111    (X'+Y'+W'+Z') = M15          0
+
+resultado:
+
+PoS(0,1,2,4,7,12,15)
+
+
+
+05.) Identificar as expressões SoP e PoS equivalentes às tabelas abaixo
+
+05a.)
+
+a.)
+
+Na forma SoP, usamos os índices em que f = 1.
+Na forma PoS, usamos os índices em que f = 0.
+
+SoP(1,3) = x'.y + x.y
+PoS(0,2) = (x+y) . (x'+y)
+
+As duas formas são equivalentes a f = y.
+
+resultado:
+
+SoP(1,3)
+PoS(0,2)
+
+
+b.)
+
+SoP(0,2,3) = x'.y' + x.y' + x.y
+PoS(1) = (x+y')
+
+As duas formas são equivalentes a f = x + y'.
+
+resultado:
+
+SoP(0,2,3)
+PoS(1)
+
+
+c.)
+
+SoP(0,1,2,6,7) = x'.y'.z' + x'.y'.z + x'.y.z' + x.y.z' + x.y.z
+PoS(3,4,5) = (x+y'+z') . (x'+y+z) . (x'+y+z')
+
+resultado:
+
+SoP(0,1,2,6,7)
+PoS(3,4,5)
+
+
+d.)
+
+SoP(0,2,4,6) = x'.y'.z' + x'.y.z' + x.y'.z' + x.y.z'
+PoS(1,3,5,7) = (x+y+z') . (x+y'+z') . (x'+y+z') . (x'+y'+z')
+
+As duas formas são equivalentes a f = z'.
+
+resultado:
+
+SoP(0,2,4,6)
+PoS(1,3,5,7)
+
+
+e.)
+
+SoP(0,1,4,5,6,10,11,12,15) = x'.y'.w'.z' + x'.y'.w'.z + x'.y.w'.z' + x'.y.w'.z + x'.y.w.z' + x.y'.w.z' + x.y'.w.z + x.y.w'.z' + x.y.w.z
+PoS(2,3,7,8,9,13,14) = (x+y+w'+z) . (x+y+w'+z') . (x+y'+w'+z') . (x'+y+w+z) . (x'+y+w+z') . (x'+y'+w+z') . (x'+y'+w'+z)
+
+resultado:
+
+SoP(0,1,4,5,6,10,11,12,15)
+PoS(2,3,7,8,9,13,14)

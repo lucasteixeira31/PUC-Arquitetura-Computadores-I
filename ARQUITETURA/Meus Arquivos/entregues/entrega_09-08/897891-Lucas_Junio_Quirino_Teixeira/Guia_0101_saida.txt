@@ -1,0 +1,19 @@
+Pontificia Universidade Catolica de Minas Gerais
+Arquitetura de Computadores I
+
+Matricula: 897891
+Nome: Lucas Junio Quirino Teixeira
+
+Resultado da execucao de Guia_0101.v
+
+Guia_0101 - Tests
+x =          29
+b = 0000011101
+x =          53
+b = 0000110101
+x =         761
+b = 1011111001
+x =         213
+b = 0011010101
+x =         365
+b = 0101101101

@@ -1,0 +1,8 @@
+Guia_0506 - Tests
+
+s = ~(a ^ b) usando apenas portas NOR
+a b = s
+0 0 = 1
+0 1 = 0
+1 0 = 0
+1 1 = 1

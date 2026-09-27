@@ -1,0 +1,635 @@
+Pontificia Universidade Catolica de Minas Gerais
+Arquitetura de Computadores I
+
+Guia 07 - Introducao a linguagem Verilog e simulacao em Logisim
+Tema: Projeto de unidade logica
+
+Matricula: 897891
+Nome: Lucas Junio Quirino Teixeira
+
+
+01.) Unidade logica com AND e NAND
+
+O circuito deve calcular inicialmente as duas operacoes em paralelo:
+
+AND  = a . b
+NAND = ~(a . b)
+
+Depois, uma chave de selecao escolhe apenas uma resposta:
+
+select = 0 -> NAND
+select = 1 -> AND
+
+A selecao foi implementada somente com portas nativas NOT, AND e OR,
+sem operador ternario e sem switch-case.
+
+Arquivo correspondente: Guia_0701.v
+
+Codigo:
+
+// -------------------------
+// Guia_0701 - AND / NAND
+// Matricula: 897891
+// Nome: Lucas Junio Quirino Teixeira
+// -------------------------
+
+module lu0701 (
+ output and_s,
+ output nand_s,
+ output s,
+ input a,
+ input b,
+ input select
+);
+
+ wire not_select;
+ wire w0;
+ wire w1;
+
+ and  AND1  ( and_s,  a, b );
+ nand NAND1 ( nand_s, a, b );
+
+ not NOT1 ( not_select, select );
+ and AND2 ( w0, nand_s, not_select );
+ and AND3 ( w1, and_s, select );
+ or  OR1  ( s, w0, w1 );
+
+endmodule // lu0701
+
+module test_lu0701;
+
+ reg x;
+ reg y;
+ reg select;
+ wire and_s;
+ wire nand_s;
+ wire s;
+
+ lu0701 modulo ( and_s, nand_s, s, x, y, select );
+
+ initial
+ begin : main
+   $display ( "Guia_0701 - Tests" );
+   $display ( " x y sel | AND NAND | s" );
+   $monitor ( "%2b %1b %3b | %3b %4b | %1b",
+              x, y, select, and_s, nand_s, s );
+
+   x = 1'b0; y = 1'b0; select = 1'b0;
+   #1 select = 1'b1;
+   #1 x = 1'b0; y = 1'b1; select = 1'b0;
+   #1 select = 1'b1;
+   #1 x = 1'b1; y = 1'b0; select = 1'b0;
+   #1 select = 1'b1;
+   #1 x = 1'b1; y = 1'b1; select = 1'b0;
+   #1 select = 1'b1;
+ end
+
+endmodule // test_lu0701
+
+Previsao manual de testes:
+
+a b sel | AND NAND | s
+0 0  0  |  0    1   | 1
+0 0  1  |  0    1   | 0
+0 1  0  |  0    1   | 1
+0 1  1  |  0    1   | 0
+1 0  0  |  0    1   | 1
+1 0  1  |  0    1   | 0
+1 1  0  |  1    0   | 0
+1 1  1  |  1    0   | 1
+
+
+
+02.) Unidade logica com OR e NOR
+
+As duas operacoes sao:
+
+OR  = a + b
+NOR = ~(a + b)
+
+A chave de selecao funciona conforme solicitado:
+
+select = 0 -> NOR
+select = 1 -> OR
+
+A selecao foi montada com portas nativas NOT, AND e OR.
+
+Arquivo correspondente: Guia_0702.v
+
+Codigo:
+
+// -------------------------
+// Guia_0702 - OR / NOR
+// Matricula: 897891
+// Nome: Lucas Junio Quirino Teixeira
+// -------------------------
+
+module lu0702 (
+ output s,
+ input a,
+ input b,
+ input select
+);
+
+ wire or_s;
+ wire nor_s;
+ wire not_select;
+ wire w0;
+ wire w1;
+
+ or  OR1  ( or_s,  a, b );
+ nor NOR1 ( nor_s, a, b );
+
+ not NOT1 ( not_select, select );
+ and AND1 ( w0, nor_s, not_select );
+ and AND2 ( w1, or_s, select );
+ or  OR2  ( s, w0, w1 );
+
+endmodule // lu0702
+
+module test_lu0702;
+
+ reg x;
+ reg y;
+ reg select;
+ wire s;
+
+ lu0702 modulo ( s, x, y, select );
+
+ initial
+ begin : main
+   $display ( "Guia_0702 - Tests" );
+   $display ( " x y sel | s" );
+   $monitor ( "%2b %1b %3b | %1b", x, y, select, s );
+
+   x = 1'b0; y = 1'b0; select = 1'b0;
+   #1 select = 1'b1;
+   #1 x = 1'b0; y = 1'b1; select = 1'b0;
+   #1 select = 1'b1;
+   #1 x = 1'b1; y = 1'b0; select = 1'b0;
+   #1 select = 1'b1;
+   #1 x = 1'b1; y = 1'b1; select = 1'b0;
+   #1 select = 1'b1;
+ end
+
+endmodule // test_lu0702
+
+Previsao manual de testes:
+
+a b sel | OR NOR | s
+0 0  0  | 0   1  | 1
+0 0  1  | 0   1  | 0
+0 1  0  | 1   0  | 0
+0 1  1  | 1   0  | 1
+1 0  0  | 1   0  | 0
+1 0  1  | 1   0  | 1
+1 1  0  | 1   0  | 0
+1 1  1  | 1   0  | 1
+
+
+
+03.) Unidade logica com AND/NAND e OR/NOR
+
+Primeiro sao calculadas quatro operacoes em paralelo:
+
+AND  = a . b
+NAND = ~(a . b)
+OR   = a + b
+NOR  = ~(a + b)
+
+A primeira chave escolhe a porta dentro de cada grupo:
+
+select_porta = 0 -> NAND ou NOR
+select_porta = 1 -> AND ou OR
+
+A segunda chave escolhe o grupo:
+
+select_grupo = 0 -> grupo OR/NOR
+select_grupo = 1 -> grupo AND/NAND
+
+Os dois estagios de selecao foram construidos com portas NOT, AND e OR,
+sem switch-case e sem operador ternario.
+
+Arquivo correspondente: Guia_0703.v
+
+Codigo:
+
+// -------------------------
+// Guia_0703 - AND/NAND e OR/NOR
+// Matricula: 897891
+// Nome: Lucas Junio Quirino Teixeira
+// -------------------------
+
+module lu0703 (
+ output s,
+ input a,
+ input b,
+ input select_porta,
+ input select_grupo
+);
+
+ wire and_s;
+ wire nand_s;
+ wire or_s;
+ wire nor_s;
+
+ wire not_porta;
+ wire not_grupo;
+
+ wire w_nand;
+ wire w_and;
+ wire grupo_and;
+
+ wire w_nor;
+ wire w_or;
+ wire grupo_or;
+
+ wire w_grupo_or;
+ wire w_grupo_and;
+
+ and  AND1  ( and_s,  a, b );
+ nand NAND1 ( nand_s, a, b );
+ or   OR1   ( or_s,   a, b );
+ nor  NOR1  ( nor_s,  a, b );
+
+ not NOT1 ( not_porta, select_porta );
+ not NOT2 ( not_grupo, select_grupo );
+
+ and AND2 ( w_nand, nand_s, not_porta );
+ and AND3 ( w_and,  and_s,  select_porta );
+ or  OR2  ( grupo_and, w_nand, w_and );
+
+ and AND4 ( w_nor, nor_s, not_porta );
+ and AND5 ( w_or,  or_s,  select_porta );
+ or  OR3  ( grupo_or, w_nor, w_or );
+
+ and AND6 ( w_grupo_or,  grupo_or,  not_grupo );
+ and AND7 ( w_grupo_and, grupo_and, select_grupo );
+ or  OR4  ( s, w_grupo_or, w_grupo_and );
+
+endmodule // lu0703
+
+module test_lu0703;
+
+ reg x;
+ reg y;
+ reg select_porta;
+ reg select_grupo;
+ wire s;
+
+ lu0703 modulo ( s, x, y, select_porta, select_grupo );
+
+ initial
+ begin : main
+   $display ( "Guia_0703 - Tests" );
+   $display ( " x y porta grupo | s" );
+   $monitor ( "%2b %1b %5b %5b | %1b",
+              x, y, select_porta, select_grupo, s );
+
+   x = 1'b0; y = 1'b0; select_porta = 1'b0; select_grupo = 1'b0;
+   #1 select_porta = 1'b1;
+   #1 select_porta = 1'b0; select_grupo = 1'b1;
+   #1 select_porta = 1'b1;
+
+   #1 x = 1'b0; y = 1'b1; select_porta = 1'b0; select_grupo = 1'b0;
+   #1 select_porta = 1'b1;
+   #1 select_porta = 1'b0; select_grupo = 1'b1;
+   #1 select_porta = 1'b1;
+
+   #1 x = 1'b1; y = 1'b0; select_porta = 1'b0; select_grupo = 1'b0;
+   #1 select_porta = 1'b1;
+   #1 select_porta = 1'b0; select_grupo = 1'b1;
+   #1 select_porta = 1'b1;
+
+   #1 x = 1'b1; y = 1'b1; select_porta = 1'b0; select_grupo = 1'b0;
+   #1 select_porta = 1'b1;
+   #1 select_porta = 1'b0; select_grupo = 1'b1;
+   #1 select_porta = 1'b1;
+ end
+
+endmodule // test_lu0703
+
+Previsao manual de testes:
+
+a b porta grupo | operacao selecionada | s
+0 0   0     0   | NOR                | 1
+0 0   0     1   | NAND               | 1
+0 0   1     0   | OR                 | 0
+0 0   1     1   | AND                | 0
+0 1   0     0   | NOR                | 0
+0 1   0     1   | NAND               | 1
+0 1   1     0   | OR                 | 1
+0 1   1     1   | AND                | 0
+1 0   0     0   | NOR                | 0
+1 0   0     1   | NAND               | 1
+1 0   1     0   | OR                 | 1
+1 0   1     1   | AND                | 0
+1 1   0     0   | NOR                | 0
+1 1   0     1   | NAND               | 0
+1 1   1     0   | OR                 | 1
+1 1   1     1   | AND                | 1
+
+
+
+04.) Unidade logica com OR, NOR, XOR e XNOR
+
+As quatro operacoes sao calculadas em paralelo e uma selecao de 2 bits
+escolhe a resposta.
+
+Conforme o enunciado:
+
+select = 00 -> OR
+select = 01 -> NOR
+select = 10 -> XNOR
+select = 11 -> XOR
+
+O multiplexador 4x1 foi descrito com portas nativas.
+Cada resultado e habilitado pelo mintermo correspondente da selecao
+e, ao final, as quatro possibilidades sao reunidas por uma porta OR.
+
+Arquivo correspondente: Guia_0704.v
+
+Codigo:
+
+// -------------------------
+// Guia_0704 - OR/NOR/XOR/XNOR
+// Matricula: 897891
+// Nome: Lucas Junio Quirino Teixeira
+// -------------------------
+
+module lu0704 (
+ output s,
+ input a,
+ input b,
+ input [1:0] select
+);
+
+ wire or_s;
+ wire nor_s;
+ wire xor_s;
+ wire xnor_s;
+
+ wire not_s1;
+ wire not_s0;
+
+ wire w0;
+ wire w1;
+ wire w2;
+ wire w3;
+
+ or   OR1   ( or_s,   a, b );
+ nor  NOR1  ( nor_s,  a, b );
+ xor  XOR1  ( xor_s,  a, b );
+ xnor XNOR1 ( xnor_s, a, b );
+
+ not NOT1 ( not_s1, select[1] );
+ not NOT2 ( not_s0, select[0] );
+
+ and AND1 ( w0, or_s,   not_s1, not_s0 );
+ and AND2 ( w1, nor_s,  not_s1, select[0] );
+ and AND3 ( w2, xnor_s, select[1], not_s0 );
+ and AND4 ( w3, xor_s,  select[1], select[0] );
+
+ or OR2 ( s, w0, w1, w2, w3 );
+
+endmodule // lu0704
+
+module test_lu0704;
+
+ reg x;
+ reg y;
+ reg [1:0] select;
+ wire s;
+
+ lu0704 modulo ( s, x, y, select );
+
+ initial
+ begin : main
+   $display ( "Guia_0704 - Tests" );
+   $display ( " x y sel | s" );
+   $monitor ( "%2b %1b %3b | %1b", x, y, select, s );
+
+   x = 1'b0; y = 1'b0; select = 2'b00;
+   #1 select = 2'b01;
+   #1 select = 2'b10;
+   #1 select = 2'b11;
+
+   #1 x = 1'b0; y = 1'b1; select = 2'b00;
+   #1 select = 2'b01;
+   #1 select = 2'b10;
+   #1 select = 2'b11;
+
+   #1 x = 1'b1; y = 1'b0; select = 2'b00;
+   #1 select = 2'b01;
+   #1 select = 2'b10;
+   #1 select = 2'b11;
+
+   #1 x = 1'b1; y = 1'b1; select = 2'b00;
+   #1 select = 2'b01;
+   #1 select = 2'b10;
+   #1 select = 2'b11;
+ end
+
+endmodule // test_lu0704
+
+Previsao manual de testes:
+
+a b sel | operacao | s
+0 0  00 | OR       | 0
+0 0  01 | NOR      | 1
+0 0  10 | XNOR     | 1
+0 0  11 | XOR      | 0
+0 1  00 | OR       | 1
+0 1  01 | NOR      | 0
+0 1  10 | XNOR     | 0
+0 1  11 | XOR      | 1
+1 0  00 | OR       | 1
+1 0  01 | NOR      | 0
+1 0  10 | XNOR     | 0
+1 0  11 | XOR      | 1
+1 1  00 | OR       | 1
+1 1  01 | NOR      | 0
+1 1  10 | XNOR     | 1
+1 1  11 | XOR      | 0
+
+
+
+05.) Unidade logica com NOT, AND, NAND, OR, NOR, XOR e XNOR
+
+As sete operacoes pedidas sao calculadas com portas nativas.
+A selecao usa 3 bits.
+
+Foi adotada a seguinte codificacao:
+
+select = 000 -> NOT a
+select = 001 -> AND
+select = 010 -> NAND
+select = 011 -> OR
+select = 100 -> NOR
+select = 101 -> XOR
+select = 110 -> XNOR
+
+Como existem 8 combinacoes possiveis para 3 bits e apenas 7 operacoes
+obrigatorias, a combinacao restante foi utilizada para negar o outro
+operando, conforme sugerido no enunciado:
+
+select = 111 -> NOT b
+
+A selecao final foi implementada por portas NOT, AND e OR,
+sem switch-case e sem operador ternario.
+
+Arquivo correspondente: Guia_0705.v
+
+Codigo:
+
+// -------------------------
+// Guia_0705 - Unidade Logica
+// Matricula: 897891
+// Nome: Lucas Junio Quirino Teixeira
+// -------------------------
+
+module lu0705 (
+ output s,
+ input a,
+ input b,
+ input [2:0] select
+);
+
+ wire not_a;
+ wire and_s;
+ wire nand_s;
+ wire or_s;
+ wire nor_s;
+ wire xor_s;
+ wire xnor_s;
+ wire not_b;
+
+ wire not_s2;
+ wire not_s1;
+ wire not_s0;
+
+ wire w0;
+ wire w1;
+ wire w2;
+ wire w3;
+ wire w4;
+ wire w5;
+ wire w6;
+ wire w7;
+
+ not  NOTA  ( not_a,  a );
+ and  AND1  ( and_s,  a, b );
+ nand NAND1 ( nand_s, a, b );
+ or   OR1   ( or_s,   a, b );
+ nor  NOR1  ( nor_s,  a, b );
+ xor  XOR1  ( xor_s,  a, b );
+ xnor XNOR1 ( xnor_s, a, b );
+ not  NOTB  ( not_b,  b );
+
+ not NOTS2 ( not_s2, select[2] );
+ not NOTS1 ( not_s1, select[1] );
+ not NOTS0 ( not_s0, select[0] );
+
+ and AND2 ( w0, not_a,  not_s2, not_s1, not_s0 );
+ and AND3 ( w1, and_s,   not_s2, not_s1, select[0] );
+ and AND4 ( w2, nand_s,  not_s2, select[1], not_s0 );
+ and AND5 ( w3, or_s,    not_s2, select[1], select[0] );
+ and AND6 ( w4, nor_s,   select[2], not_s1, not_s0 );
+ and AND7 ( w5, xor_s,   select[2], not_s1, select[0] );
+ and AND8 ( w6, xnor_s,  select[2], select[1], not_s0 );
+ and AND9 ( w7, not_b,   select[2], select[1], select[0] );
+
+ or OR2 ( s, w0, w1, w2, w3, w4, w5, w6, w7 );
+
+endmodule // lu0705
+
+module test_lu0705;
+
+ reg x;
+ reg y;
+ reg [2:0] select;
+ wire s;
+
+ lu0705 modulo ( s, x, y, select );
+
+ initial
+ begin : main
+   $display ( "Guia_0705 - Tests" );
+   $display ( " x y sel | s" );
+   $monitor ( "%2b %1b %3b | %1b", x, y, select, s );
+
+   x = 1'b0; y = 1'b0; select = 3'b000;
+   #1 select = 3'b001;
+   #1 select = 3'b010;
+   #1 select = 3'b011;
+   #1 select = 3'b100;
+   #1 select = 3'b101;
+   #1 select = 3'b110;
+   #1 select = 3'b111;
+
+   #1 x = 1'b0; y = 1'b1; select = 3'b000;
+   #1 select = 3'b001;
+   #1 select = 3'b010;
+   #1 select = 3'b011;
+   #1 select = 3'b100;
+   #1 select = 3'b101;
+   #1 select = 3'b110;
+   #1 select = 3'b111;
+
+   #1 x = 1'b1; y = 1'b0; select = 3'b000;
+   #1 select = 3'b001;
+   #1 select = 3'b010;
+   #1 select = 3'b011;
+   #1 select = 3'b100;
+   #1 select = 3'b101;
+   #1 select = 3'b110;
+   #1 select = 3'b111;
+
+   #1 x = 1'b1; y = 1'b1; select = 3'b000;
+   #1 select = 3'b001;
+   #1 select = 3'b010;
+   #1 select = 3'b011;
+   #1 select = 3'b100;
+   #1 select = 3'b101;
+   #1 select = 3'b110;
+   #1 select = 3'b111;
+ end
+
+endmodule // test_lu0705
+
+Previsao manual de testes:
+
+a b sel | operacao | s
+0 0  000 | NOT a    | 1
+0 0  001 | AND      | 0
+0 0  010 | NAND     | 1
+0 0  011 | OR       | 0
+0 0  100 | NOR      | 1
+0 0  101 | XOR      | 0
+0 0  110 | XNOR     | 1
+0 0  111 | NOT b    | 1
+0 1  000 | NOT a    | 1
+0 1  001 | AND      | 0
+0 1  010 | NAND     | 1
+0 1  011 | OR       | 1
+0 1  100 | NOR      | 0
+0 1  101 | XOR      | 1
+0 1  110 | XNOR     | 0
+0 1  111 | NOT b    | 0
+1 0  000 | NOT a    | 0
+1 0  001 | AND      | 0
+1 0  010 | NAND     | 1
+1 0  011 | OR       | 1
+1 0  100 | NOR      | 0
+1 0  101 | XOR      | 1
+1 0  110 | XNOR     | 0
+1 0  111 | NOT b    | 1
+1 1  000 | NOT a    | 0
+1 1  001 | AND      | 1
+1 1  010 | NAND     | 0
+1 1  011 | OR       | 1
+1 1  100 | NOR      | 0
+1 1  101 | XOR      | 0
+1 1  110 | XNOR     | 1
+1 1  111 | NOT b    | 0
+

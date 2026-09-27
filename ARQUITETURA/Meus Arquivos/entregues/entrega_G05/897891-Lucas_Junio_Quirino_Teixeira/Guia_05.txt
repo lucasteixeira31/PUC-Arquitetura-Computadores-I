@@ -1,0 +1,387 @@
+Pontifícia Universidade Católica de Minas Gerais
+Arquitetura de Computadores I
+
+Guia 05 - Introdução à linguagem Verilog e simulação em Logisim
+
+Matrícula: 897891
+Nome: Lucas Junio Quirino Teixeira
+
+
+01.) Projetar e descrever em Verilog, usando apenas portas nativas NAND,
+um módulo equivalente à expressão (~a & b)
+
+01a.)
+
+Expressão original:
+
+s = ~a & b
+
+Para implementar usando somente portas NAND, usamos primeiro uma NAND
+com as duas entradas ligadas em a para obter a negação de a:
+
+n1 = nand(a,a)
+
+n1 = ~(a.a)
+
+n1 = ~a
+
+Em seguida:
+
+n2 = nand(n1,b)
+
+n2 = ~(~a.b)
+
+A saída n2 está negada, portanto usamos uma terceira porta NAND como inversor:
+
+s = nand(n2,n2)
+
+s = ~(n2.n2)
+
+s = ~n2
+
+s = ~[~(~a.b)]
+
+s = ~a.b
+
+Circuito equivalente:
+
+n1 = NAND(a,a)
+n2 = NAND(n1,b)
+s  = NAND(n2,n2)
+
+Tabela verdade:
+
+a b | s
+----+---
+0 0 | 0
+0 1 | 1
+1 0 | 0
+1 1 | 0
+
+resultado:
+
+s = ~a & b
+
+A implementação utiliza somente portas NAND.
+
+
+
+
+02.) Projetar e descrever em Verilog, usando apenas portas nativas NOR,
+um módulo equivalente à expressão (a | ~b)
+
+02a.)
+
+Expressão original:
+
+s = a | ~b
+
+Para implementar usando somente portas NOR, primeiro usamos uma NOR
+com as duas entradas ligadas em b para obter a negação de b:
+
+n1 = nor(b,b)
+
+n1 = ~(b+b)
+
+n1 = ~b
+
+Em seguida:
+
+n2 = nor(a,n1)
+
+n2 = ~(a+~b)
+
+A saída n2 está negada, portanto usamos outra NOR como inversor:
+
+s = nor(n2,n2)
+
+s = ~(n2+n2)
+
+s = ~n2
+
+s = ~[~(a+~b)]
+
+s = a+~b
+
+Circuito equivalente:
+
+n1 = NOR(b,b)
+n2 = NOR(a,n1)
+s  = NOR(n2,n2)
+
+Tabela verdade:
+
+a b | s
+----+---
+0 0 | 1
+0 1 | 0
+1 0 | 1
+1 1 | 1
+
+resultado:
+
+s = a | ~b
+
+A implementação utiliza somente portas NOR.
+
+
+
+
+03.) Projetar e descrever em Verilog, usando apenas portas nativas NAND,
+um módulo equivalente à expressão ~(a | ~b)
+
+03a.)
+
+Expressão original:
+
+s = ~(a | ~b)
+
+Aplicando a propriedade de De Morgan:
+
+~(a + ~b) = ~a . ~~b
+
+Como:
+
+~~b = b
+
+então:
+
+s = ~a . b
+
+A expressão é equivalente à obtida na questão 01.
+
+Para implementar usando somente portas NAND:
+
+n1 = nand(a,a)
+
+n1 = ~a
+
+Depois:
+
+n2 = nand(n1,b)
+
+n2 = ~(~a.b)
+
+Finalmente usamos outra NAND como inversor:
+
+s = nand(n2,n2)
+
+s = ~n2
+
+s = ~a.b
+
+Circuito equivalente:
+
+n1 = NAND(a,a)
+n2 = NAND(n1,b)
+s  = NAND(n2,n2)
+
+Tabela verdade:
+
+a b | s
+----+---
+0 0 | 0
+0 1 | 1
+1 0 | 0
+1 1 | 0
+
+resultado:
+
+~(a | ~b) = ~a & b
+
+A implementação utiliza somente portas NAND.
+
+
+
+
+04.) Projetar e descrever em Verilog, usando apenas portas nativas NOR,
+um módulo equivalente à expressão ~(~a & b)
+
+04a.)
+
+Expressão original:
+
+s = ~(~a & b)
+
+Aplicando a propriedade de De Morgan:
+
+~(~a . b) = ~~a + ~b
+
+Como:
+
+~~a = a
+
+então:
+
+s = a + ~b
+
+A expressão é equivalente à obtida na questão 02.
+
+Para implementar usando somente portas NOR:
+
+n1 = nor(b,b)
+
+n1 = ~b
+
+Depois:
+
+n2 = nor(a,n1)
+
+n2 = ~(a+~b)
+
+Finalmente usamos outra NOR como inversor:
+
+s = nor(n2,n2)
+
+s = ~n2
+
+s = a+~b
+
+Circuito equivalente:
+
+n1 = NOR(b,b)
+n2 = NOR(a,n1)
+s  = NOR(n2,n2)
+
+Tabela verdade:
+
+a b | s
+----+---
+0 0 | 1
+0 1 | 0
+1 0 | 1
+1 1 | 1
+
+resultado:
+
+~(~a & b) = a | ~b
+
+A implementação utiliza somente portas NOR.
+
+
+
+
+05.) Projetar e descrever em Verilog, usando apenas portas nativas NAND,
+um módulo equivalente à disjunção exclusiva ((a ^ b) = a xor b)
+
+05a.)
+
+Expressão:
+
+s = a ^ b
+
+A disjunção exclusiva apresenta saída igual a 1 somente quando as entradas
+são diferentes.
+
+Uma implementação de XOR usando somente portas NAND pode ser obtida
+com quatro portas.
+
+Primeiro:
+
+n1 = nand(a,b)
+
+n1 = ~(a.b)
+
+Depois:
+
+n2 = nand(a,n1)
+
+n2 = ~(a.n1)
+
+e:
+
+n3 = nand(b,n1)
+
+n3 = ~(b.n1)
+
+Por fim:
+
+s = nand(n2,n3)
+
+s = ~(n2.n3)
+
+Circuito equivalente:
+
+n1 = NAND(a,b)
+n2 = NAND(a,n1)
+n3 = NAND(b,n1)
+s  = NAND(n2,n3)
+
+Verificando a tabela verdade:
+
+a b | s
+----+---
+0 0 | 0
+0 1 | 1
+1 0 | 1
+1 1 | 0
+
+resultado:
+
+s = a ^ b
+
+A implementação utiliza somente quatro portas NAND.
+
+
+
+
+06.) Projetar e descrever em Verilog, usando apenas portas nativas NOR,
+um módulo equivalente à negação da disjunção exclusiva
+(~(a ^ b) = a xnor b)
+
+06a.)
+
+Expressão:
+
+s = ~(a ^ b)
+
+A função XNOR apresenta saída igual a 1 quando as duas entradas são iguais.
+
+Uma implementação usando somente portas NOR pode ser construída com
+quatro portas.
+
+Primeiro:
+
+n1 = nor(a,b)
+
+n1 = ~(a+b)
+
+Depois:
+
+n2 = nor(a,n1)
+
+n2 = ~(a+n1)
+
+e:
+
+n3 = nor(b,n1)
+
+n3 = ~(b+n1)
+
+Por fim:
+
+s = nor(n2,n3)
+
+s = ~(n2+n3)
+
+Circuito equivalente:
+
+n1 = NOR(a,b)
+n2 = NOR(a,n1)
+n3 = NOR(b,n1)
+s  = NOR(n2,n3)
+
+Verificando a tabela verdade:
+
+a b | s
+----+---
+0 0 | 1
+0 1 | 0
+1 0 | 0
+1 1 | 1
+
+resultado:
+
+s = ~(a ^ b)
+
+A implementação utiliza somente quatro portas NOR.

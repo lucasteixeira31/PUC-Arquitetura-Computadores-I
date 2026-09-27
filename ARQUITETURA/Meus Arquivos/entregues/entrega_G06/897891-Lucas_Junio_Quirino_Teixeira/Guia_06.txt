@@ -1,0 +1,453 @@
+Pontificia Universidade Catolica de Minas Gerais
+Instituto de Ciencias Exatas e Informatica - ICEI
+Arquitetura de Computadores I
+Guia 06
+
+Matricula: 897891
+Nome: Lucas Junio Quirino Teixeira
+
+
+01.) Simplificacao por mapa de Veitch-Karnaugh usando MINTERMOS
+     Variaveis: x, y, z
+     Ordem das linhas: xy = 00, 01, 11, 10
+     Ordem das colunas: z = 0, 1
+
+a) f(x,y,z) = Sum m(1,6,7)
+
+Mapa:
+          z
+xy       0  1
+00       0  1
+01       0  0
+11       1  1
+10       0  0
+
+Agrupamentos:
+(6,7) -> x.y
+(1)   -> x'.y'.z
+
+Simplificacao:
+f = x.y + x'.y'.z
+
+
+b) f(x,y,z) = Sum m(0,2,6)
+
+Mapa:
+          z
+xy       0  1
+00       1  0
+01       1  0
+11       1  0
+10       0  0
+
+Agrupamentos:
+(0,2) -> x'.z'
+(2,6) -> y.z'
+
+Simplificacao:
+f = x'.z' + y.z'
+
+
+c) f(x,y,z) = Sum m(1,3,6,7)
+
+Mapa:
+          z
+xy       0  1
+00       0  1
+01       0  1
+11       1  1
+10       0  0
+
+Agrupamentos:
+(1,3) -> x'.z
+(6,7) -> x.y
+
+Simplificacao:
+f = x'.z + x.y
+
+
+d) f(x,y,z) = Sum m(1,2,4,6)
+
+Mapa:
+          z
+xy       0  1
+00       0  1
+01       1  0
+11       1  0
+10       1  0
+
+Agrupamentos:
+(2,6) -> y.z'
+(4,6) -> x.z'
+(1)   -> x'.y'.z
+
+Simplificacao:
+f = y.z' + x.z' + x'.y'.z
+
+
+e) f(x,y,z) = Sum m(0,1,5,7)
+
+Mapa:
+          z
+xy       0  1
+00       1  1
+01       0  0
+11       0  1
+10       0  1
+
+Agrupamentos:
+(0,1) -> x'.y'
+(5,7) -> x.z
+
+Simplificacao:
+f = x'.y' + x.z
+
+
+
+02.) Simplificacao por mapa de Veitch-Karnaugh usando MAXTERMOS
+     Variaveis: X, Y, Z
+     Ordem das linhas: XY = 00, 01, 11, 10
+     Ordem das colunas: Z = 0, 1
+     Nos mapas abaixo, os agrupamentos sao feitos sobre os zeros.
+
+a) F(X,Y,Z) = Pi M(0,4,5)
+
+Mapa:
+          Z
+XY       0  1
+00       0  1
+01       1  1
+11       1  1
+10       0  0
+
+Agrupamentos de zeros:
+(0,4) -> (Y + Z)
+(4,5) -> (Y + X')
+
+Simplificacao:
+F = (Y + Z).(Y + X')
+
+
+b) F(X,Y,Z) = Pi M(0,1,5)
+
+Mapa:
+          Z
+XY       0  1
+00       0  0
+01       1  1
+11       1  1
+10       1  0
+
+Agrupamentos de zeros:
+(0,1) -> (X + Y)
+(1,5) -> (Y + Z')
+
+Simplificacao:
+F = (X + Y).(Y + Z')
+
+
+c) F(X,Y,Z) = Pi M(1,2,3,6)
+
+Mapa:
+          Z
+XY       0  1
+00       1  0
+01       0  0
+11       0  1
+10       1  1
+
+Agrupamentos de zeros:
+(1,3) -> (X + Z')
+(2,6) -> (Z + Y')
+
+Simplificacao:
+F = (X + Z').(Z + Y')
+
+
+d) F(X,Y,Z) = Pi M(0,1,3,5)
+
+Mapa:
+          Z
+XY       0  1
+00       0  0
+01       1  0
+11       1  1
+10       1  0
+
+Agrupamentos de zeros:
+(0,1) -> (X + Y)
+(1,3) -> (X + Z')
+(1,5) -> (Y + Z')
+
+Simplificacao:
+F = (X + Y).(X + Z').(Y + Z')
+
+
+e) F(X,Y,Z) = Pi M(0,1,6,7)
+
+Mapa:
+          Z
+XY       0  1
+00       0  0
+01       1  1
+11       0  0
+10       1  1
+
+Agrupamentos de zeros:
+(0,1) -> (X + Y)
+(6,7) -> (X' + Y')
+
+Simplificacao:
+F = (X + Y).(X' + Y')
+
+
+
+03.) Simplificacao por mapa de Veitch-Karnaugh usando MINTERMOS
+     Variaveis: x, y, w, z
+     Ordem das linhas: xy = 00, 01, 11, 10
+     Ordem das colunas: wz = 00, 01, 11, 10
+
+a) f(x,y,w,z) = Sum m(1,2,5,8,12,13)
+
+Mapa:
+xy\wz    00  01  11  10
+00        0   1   0   1
+01        0   1   0   0
+11        1   1   0   0
+10        1   0   0   0
+
+Simplificacao:
+f = y.z.w' + x.w'.z' + x'.z.w' + x'.y'.w.z'
+
+
+b) f(x,y,w,z) = Sum m(0,1,3,5,9,13,15)
+
+Mapa:
+xy\wz    00  01  11  10
+00        1   1   1   0
+01        0   1   0   0
+11        0   1   1   0
+10        0   1   0   0
+
+Simplificacao:
+f = z.w' + x.y.z + x'.y'.z + x'.y'.w'
+
+
+c) f(x,y,w,z) = Sum m(0,1,2,7,10,11,13,15)
+
+Mapa:
+xy\wz    00  01  11  10
+00        1   1   0   1
+01        0   0   1   0
+11        0   1   1   0
+10        0   0   1   1
+
+Simplificacao:
+f = y.w.z + x.y.z + x.y'.w + y'.w.z' + x'.y'.w'
+
+
+d) f(x,y,w,z) = Sum m(2,3,5,7,11,12,15)
+
+Mapa:
+xy\wz    00  01  11  10
+00        0   0   1   1
+01        0   1   1   0
+11        1   0   1   0
+10        0   0   1   0
+
+Simplificacao:
+f = w.z + x'.y.z + x'.y'.w + x.y.w'.z'
+
+
+e) f(x,y,w,z) = Sum m(0,1,3,5,7,8,11,13)
+
+Mapa:
+xy\wz    00  01  11  10
+00        1   1   1   0
+01        0   1   1   0
+11        0   1   0   0
+10        1   0   1   0
+
+Simplificacao:
+f = x'.z + y'.w.z + y.w'.z + y'.w'.z'
+
+
+
+04.) Simplificacao por mapa de Veitch-Karnaugh usando MAXTERMOS
+     Variaveis: X, Y, W, Z
+     Ordem das linhas: XY = 00, 01, 11, 10
+     Ordem das colunas: WZ = 00, 01, 11, 10
+     Nos mapas abaixo, os agrupamentos sao feitos sobre os zeros.
+
+a) F(X,Y,W,Z) = Pi M(2,6,7,14)
+
+Mapa:
+XY\WZ    00  01  11  10
+00        1   1   1   0
+01        1   1   0   0
+11        1   1   1   0
+10        1   1   1   1
+
+Simplificacao:
+F = (X + Z + W').(X + W' + Y').(Z + W' + Y')
+
+
+b) F(X,Y,W,Z) = Pi M(4,7,9,13,15)
+
+Mapa:
+XY\WZ    00  01  11  10
+00        1   1   1   1
+01        0   1   0   1
+11        1   0   0   1
+10        1   0   1   1
+
+Simplificacao:
+F = (W + X' + Z').(W + X + Z + Y').(W' + Y' + Z')
+
+
+c) F(X,Y,W,Z) = Pi M(4,6,8,14,15)
+
+Mapa:
+XY\WZ    00  01  11  10
+00        1   1   1   1
+01        0   1   1   0
+11        1   1   0   0
+10        0   1   1   1
+
+Simplificacao:
+F = (X + Z + Y').(W + Y + Z + X').(W' + X' + Y')
+
+
+d) F(X,Y,W,Z) = Pi M(1,5,7,12,13,15)
+
+Mapa:
+XY\WZ    00  01  11  10
+00        1   0   1   1
+01        1   0   0   1
+11        0   0   0   1
+10        1   1   1   1
+
+Simplificacao:
+F = (Y' + Z').(W + X + Z').(W + X' + Y')
+
+
+e) F(X,Y,W,Z) = Pi M(2,3,4,6,11,12,14)
+
+Mapa:
+XY\WZ    00  01  11  10
+00        1   1   0   0
+01        0   1   1   0
+11        0   1   1   0
+10        1   1   0   1
+
+Simplificacao:
+F = (Z + Y').(X + Y + W').(Y + W' + Z')
+
+
+
+05.) Identificacao e simplificacao do circuito usando MINTERMOS
+
+Equacoes intermediarias observadas no circuito:
+
+w8  = y'
+w9  = x'
+w5  = w8 + w9
+w3  = w5'
+
+w6  = x.y
+w4  = w6'
+
+w1  = w3.w4
+
+w10 = y.z
+w11 = x'
+w7  = w10 + w11
+w2  = w7'
+
+s = w1 + w2
+
+Substituindo:
+
+w3 = (y' + x')' = x.y
+w4 = (x.y)'
+
+Logo:
+w1 = (x.y).(x.y)' = 0
+
+Para o segundo ramo:
+w2 = (y.z + x')'
+   = x.(y.z)'
+   = x.(y' + z')
+
+Portanto:
+s = x.(y' + z')
+s = x.y' + x.z'
+
+Forma canonica por mintermos:
+s(x,y,z) = Sum m(4,5,6)
+
+Mapa:
+          z
+xy       0  1
+00       0  0
+01       0  0
+11       1  0
+10       1  1
+
+Simplificacao final:
+s = x.y' + x.z'
+
+
+
+06.) Identificacao e simplificacao do circuito usando MAXTERMOS
+
+Equacoes intermediarias observadas no circuito:
+
+w8  = y'
+w9  = x'
+w5  = w8 + w + w9
+w3  = w5'
+
+w10 = w'
+w6  = x.y.w'
+w4  = w6'
+
+w1  = w3.w4
+
+w11 = y.w.z
+w12 = x'
+w7  = w11 + w12
+w2  = w7'
+
+s = w1 + w2
+
+Substituindo:
+
+w3 = (y' + w + x')'
+   = x.y.w'
+
+w4 = (x.y.w')'
+
+Logo:
+w1 = (x.y.w').(x.y.w')' = 0
+
+Para o segundo ramo:
+w2 = (y.w.z + x')'
+   = x.(y.w.z)'
+   = x.(y' + w' + z')
+
+Portanto:
+s = x.(y' + w' + z')
+
+Forma canonica por maxtermos:
+s(x,y,w,z) = Pi M(0,1,2,3,4,5,6,7,15)
+
+Mapa:
+xy\wz    00  01  11  10
+00        0   0   0   0
+01        0   0   0   0
+11        1   1   0   1
+10        1   1   1   1
+
+Simplificacao final em produto de somas:
+s = x.(y' + w' + z')

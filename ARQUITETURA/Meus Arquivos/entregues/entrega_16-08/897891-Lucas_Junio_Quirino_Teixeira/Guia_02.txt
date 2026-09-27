@@ -1,0 +1,724 @@
+Pontificia Universidade Catolica de Minas Gerais
+Arquitetura de Computadores I
+
+Guia 02 - Sistemas de Numeracao e Representacao de Dados
+
+Matricula: 897891
+Nome: Lucas Junio Quirino Teixeira
+
+
+01.) Fazer as conversoes entre as bases indicadas
+
+01a.)
+
+a.) 0,00101(2) = X(10)
+
+Pra converter binario com parte fracionaria para decimal,
+multiplicamos cada bit pela potencia negativa de 2 correspondente a sua posicao:
+
+0,00101(2)
+
+= 0*2⁻¹ + 0*2⁻² + 1*2⁻³ + 0*2⁻⁴ + 1*2⁻⁵
+= 0*1/2 + 0*1/4 + 1*1/8 + 0*1/16 + 1*1/32
+=     0 + 0 + 0,125 + 0 + 0,03125
+=               0,15625
+
+resultado:
+
+0,00101(2) = 0,15625(10)
+
+
+
+b.) 0,01011(2) = X(10)
+
+Pra converter binario com parte fracionaria para decimal,
+multiplicamos cada bit pela potencia negativa de 2 correspondente a sua posicao:
+
+0,01011(2)
+
+= 0*2⁻¹ + 1*2⁻² + 0*2⁻³ + 1*2⁻⁴ + 1*2⁻⁵
+= 0*1/2 + 1*1/4 + 0*1/8 + 1*1/16 + 1*1/32
+=   0 + 0,25 + 0 + 0,0625 + 0,03125
+=               0,34375
+
+resultado:
+
+0,01011(2) = 0,34375(10)
+
+
+
+c.) 0,10111(2) = X(10)
+
+Pra converter binario com parte fracionaria para decimal,
+multiplicamos cada bit pela potencia negativa de 2 correspondente a sua posicao:
+
+0,10111(2)
+
+= 1*2⁻¹ + 0*2⁻² + 1*2⁻³ + 1*2⁻⁴ + 1*2⁻⁵
+= 1*1/2 + 0*1/4 + 1*1/8 + 1*1/16 + 1*1/32
+=   0,5 + 0 + 0,125 + 0,0625 + 0,03125
+=               0,71875
+
+resultado:
+
+0,10111(2) = 0,71875(10)
+
+
+
+d.) 1,01101(2) = X(10)
+
+A parte inteira e calculada com potencias positivas de 2.
+Depois da virgula usamos potencias negativas de 2:
+
+1,01101(2)
+
+= 1*2⁰ + 0*2⁻¹ + 1*2⁻² + 1*2⁻³ + 0*2⁻⁴ + 1*2⁻⁵
+= 1*1 + 0*1/2 + 1*1/4 + 1*1/8 + 0*1/16 + 1*1/32
+=      1 + 0 + 0,25 + 0,125 + 0 + 0,03125
+=                1,40625
+
+resultado:
+
+1,01101(2) = 1,40625(10)
+
+
+
+e.) 10,11001(2) = X(10)
+
+A parte inteira e calculada com potencias positivas de 2.
+Depois da virgula usamos potencias negativas de 2:
+
+10,11001(2)
+
+= 1*2¹ + 0*2⁰ + 1*2⁻¹ + 1*2⁻² + 0*2⁻³ + 0*2⁻⁴ + 1*2⁻⁵
+= 1*2 + 0*1 + 1*1/2 + 1*1/4 + 0*1/8 + 0*1/16 + 1*1/32
+=       2 + 0 + 0,5 + 0,25 + 0 + 0 + 0,03125
+=                   2,78125
+
+resultado:
+
+10,11001(2) = 2,78125(10)
+
+
+
+
+02.) Fazer as conversoes entre as bases indicadas
+
+02a.)
+
+a.) 0,125000(10) = X(2)
+
+Pra converter a parte fracionaria decimal para binario,
+multiplicamos sucessivamente por 2 e anotamos a parte inteira
+dos resultados na mesma ordem:
+
+0,125 * 2 = 0,25  -> parte inteira 0
+0,25  * 2 = 0,50  -> parte inteira 0
+0,50  * 2 = 1,00  -> parte inteira 1
+
+Lendo as partes inteiras na ordem em que foram encontradas:
+
+0
+0
+1
+
+resultado:
+
+0,125000(10) = 0,001(2)
+
+
+
+b.) 1,875000(10) = X(2)
+
+Primeiro separamos a parte inteira da parte fracionaria:
+
+parte inteira = 1
+parte fracionaria = 0,875
+
+A parte inteira 1 em binario continua sendo:
+
+1(10) = 1(2)
+
+Agora multiplicamos a parte fracionaria sucessivamente por 2:
+
+0,875 * 2 = 1,75 -> parte inteira 1, sobra 0,75
+0,75  * 2 = 1,50 -> parte inteira 1, sobra 0,50
+0,50  * 2 = 1,00 -> parte inteira 1, sobra 0
+
+Lendo as partes inteiras na ordem:
+
+1
+1
+1
+
+parte fracionaria = 0,111(2)
+
+resultado:
+
+1,875000(10) = 1,111(2)
+
+
+
+c.) 2,750000(10) = X(2)
+
+Primeiro separamos a parte inteira da parte fracionaria:
+
+parte inteira = 2
+parte fracionaria = 0,75
+
+Pra converter a parte inteira para binario dividimos sucessivamente por 2:
+
+2 / 2 = 1, resto 0
+1 / 2 = 0, resto 1
+
+Lendo os restos de baixo pra cima:
+
+10
+
+2(10) = 10(2)
+
+Agora multiplicamos a parte fracionaria por 2:
+
+0,75 * 2 = 1,50 -> parte inteira 1, sobra 0,50
+0,50 * 2 = 1,00 -> parte inteira 1, sobra 0
+
+parte fracionaria = 0,11(2)
+
+resultado:
+
+2,750000(10) = 10,11(2)
+
+
+
+d.) 4,250000(10) = X(2)
+
+Primeiro separamos a parte inteira da parte fracionaria:
+
+parte inteira = 4
+parte fracionaria = 0,25
+
+Pra converter a parte inteira para binario dividimos sucessivamente por 2:
+
+4 / 2 = 2, resto 0
+2 / 2 = 1, resto 0
+1 / 2 = 0, resto 1
+
+Lendo os restos de baixo pra cima:
+
+100
+
+4(10) = 100(2)
+
+Agora multiplicamos a parte fracionaria por 2:
+
+0,25 * 2 = 0,50 -> parte inteira 0, sobra 0,50
+0,50 * 2 = 1,00 -> parte inteira 1, sobra 0
+
+parte fracionaria = 0,01(2)
+
+resultado:
+
+4,250000(10) = 100,01(2)
+
+
+
+e.) 5,625000(10) = X(2)
+
+Primeiro separamos a parte inteira da parte fracionaria:
+
+parte inteira = 5
+parte fracionaria = 0,625
+
+Pra converter a parte inteira para binario dividimos sucessivamente por 2:
+
+5 / 2 = 2, resto 1
+2 / 2 = 1, resto 0
+1 / 2 = 0, resto 1
+
+Lendo os restos de baixo pra cima:
+
+101
+
+5(10) = 101(2)
+
+Agora multiplicamos a parte fracionaria por 2:
+
+0,625 * 2 = 1,25 -> parte inteira 1, sobra 0,25
+0,25  * 2 = 0,50 -> parte inteira 0, sobra 0,50
+0,50  * 2 = 1,00 -> parte inteira 1, sobra 0
+
+parte fracionaria = 0,101(2)
+
+resultado:
+
+5,625000(10) = 101,101(2)
+
+
+
+
+03.) Fazer as conversoes de base entre as bases indicadas
+
+03a.)
+
+a.) 0,001001(2) = X(4)
+
+Em base 4, agrupamos a parte fracionaria em grupos de dois bits,
+a partir da virgula para a direita:
+
+0, 00 10 01
+
+Converter cada grupo:
+
+00(2) = 0
+10(2) = 2
+01(2) = 1
+
+Lendo os grupos da esquerda para a direita:
+
+00  10  01
+0   2   1
+
+resultado:
+
+0,001001(2) = 0,021(4)
+
+
+
+b.) 0,100001(2) = X(8)
+
+Em base 8, agrupamos a parte fracionaria em grupos de tres bits,
+a partir da virgula para a direita:
+
+0, 100 001
+
+Converter cada grupo:
+
+100(2)
+
+= 1*2² + 0*2¹ + 0*2⁰
+=     4 + 0 + 0
+=         4
+
+001(2)
+
+= 0*2² + 0*2¹ + 1*2⁰
+=     0 + 0 + 1
+=         1
+
+resultado:
+
+0,100001(2) = 0,41(8)
+
+
+
+c.) 0,101101(2) = X(16)
+
+Em base 16, agrupamos a parte fracionaria em grupos de quatro bits,
+a partir da virgula para a direita:
+
+0, 1011 01
+
+O ultimo grupo ficou incompleto, entao completamos com zeros a direita:
+
+0, 1011 0100
+
+Converter cada grupo:
+
+1011(2)
+
+= 1*2³ + 0*2² + 1*2¹ + 1*2⁰
+=       8 + 0 + 2 + 1
+=             11
+=            B(16)
+
+0100(2)
+
+= 0*2³ + 1*2² + 0*2¹ + 0*2⁰
+=       0 + 4 + 0 + 0
+=             4
+
+resultado:
+
+0,101101(2) = 0,B4(16)
+
+
+
+d.) 1,110011(2) = X(8)
+
+Em base 8, agrupamos de tres em tres bits.
+A parte inteira e agrupada para a esquerda da virgula
+e a parte fracionaria para a direita:
+
+1, 110 011
+
+A parte inteira pode ser completada com zeros a esquerda:
+
+001, 110 011
+
+Converter os grupos:
+
+001(2) = 1
+110(2) = 6
+011(2) = 3
+
+resultado:
+
+1,110011(2) = 1,63(8)
+
+
+
+e.) 1101,0101(2) = X(16)
+
+Em base 16, agrupamos de quatro em quatro bits:
+
+1101, 0101
+
+Converter os grupos:
+
+1101(2)
+
+= 1*2³ + 1*2² + 0*2¹ + 1*2⁰
+=       8 + 4 + 0 + 1
+=            13
+=           D(16)
+
+0101(2)
+
+= 0*2³ + 1*2² + 0*2¹ + 1*2⁰
+=       0 + 4 + 0 + 1
+=             5
+
+resultado:
+
+1101,0101(2) = D,5(16)
+
+
+
+
+04.) Fazer as conversoes de base entre as bases indicadas
+
+04a.)
+
+a.) 0,312(4) = X(2)
+
+Pra converter de base 4 para binario, cada algarismo da base 4
+corresponde a um grupo de dois bits:
+
+3(4) = 11(2)
+1(4) = 01(2)
+2(4) = 10(2)
+
+Substituindo cada algarismo:
+
+0, 3  1  2
+   11 01 10
+
+resultado:
+
+0,312(4) = 0,110110(2)
+
+
+
+b.) 0,2B5(16) = X(4)
+
+Primeiro desagrupamos cada algarismo hexadecimal em quatro bits:
+
+2(16) = 0010(2)
+B(16) = 1011(2)
+5(16) = 0101(2)
+
+Entao:
+
+0,2B5(16) = 0,0010 1011 0101(2)
+
+Agora agrupamos os bits de dois em dois para converter para base 4:
+
+0, 00 10 10 11 01 01
+
+Converter cada grupo:
+
+00(2) = 0
+10(2) = 2
+10(2) = 2
+11(2) = 3
+01(2) = 1
+01(2) = 1
+
+resultado:
+
+0,2B5(16) = 0,022311(4)
+
+
+
+c.) 0,713(8) = X(2)
+
+Pra converter de base 8 para binario, cada algarismo octal
+corresponde a um grupo de tres bits:
+
+7(8) = 111(2)
+1(8) = 001(2)
+3(8) = 011(2)
+
+Substituindo cada algarismo:
+
+0, 7   1   3
+   111 001 011
+
+resultado:
+
+0,713(8) = 0,111001011(2)
+
+
+
+d.) 3,2657(8) = X(4)
+
+Primeiro convertemos cada algarismo octal para tres bits:
+
+3(8) = 011(2)
+2(8) = 010(2)
+6(8) = 110(2)
+5(8) = 101(2)
+7(8) = 111(2)
+
+Entao:
+
+3,2657(8) = 011,010110101111(2)
+
+Agora agrupamos de dois em dois para converter para base 4.
+
+Na parte inteira completamos com zero a esquerda, se necessario:
+
+0011,010110101111
+
+Separando em grupos:
+
+00 11, 01 01 10 10 11 11
+
+Converter os grupos:
+
+00(2) = 0
+11(2) = 3
+
+01(2) = 1
+01(2) = 1
+10(2) = 2
+10(2) = 2
+11(2) = 3
+11(2) = 3
+
+O zero mais a esquerda nao altera o valor.
+
+resultado:
+
+3,2657(8) = 3,112233(4)
+
+
+
+e.) D,ACB1(16) = X(4)
+
+Pra converter hexadecimal diretamente para base 4,
+desagrupamos cada algarismo hexadecimal em quatro bits
+e depois separamos esses quatro bits em dois grupos de dois:
+
+D(16) = 1101(2) = 11 01 = 31(4)
+
+A(16) = 1010(2) = 10 10 = 22(4)
+C(16) = 1100(2) = 11 00 = 30(4)
+B(16) = 1011(2) = 10 11 = 23(4)
+1(16) = 0001(2) = 00 01 = 01(4)
+
+Juntando os grupos:
+
+D,ACB1(16)
+
+= 31,22 30 23 01(4)
+
+resultado:
+
+D,ACB1(16) = 31,22302301(4)
+
+
+
+
+05.) Fazer as operacoes indicadas
+
+05a.)
+
+a.) 100,101(2) + 10,11(2) = X(2)
+
+Primeiro colocamos os operandos com a mesma quantidade de casas:
+
+  100,101
++ 010,110
+---------
+  111,011
+
+resultado:
+
+100,101(2) + 10,11(2) = 111,011(2)
+
+Conferencia em decimal:
+
+100,101(2) = 4 + 0,5 + 0,125 = 4,625(10)
+10,11(2)   = 2 + 0,5 + 0,25  = 2,75(10)
+
+4,625 + 2,75 = 7,375(10)
+
+111,011(2) = 4 + 2 + 1 + 0,25 + 0,125
+= 7,375(10)
+
+
+
+b.) 1010,11(2) - 11,001(2) = X(2)
+
+Primeiro colocamos os operandos com a mesma quantidade de casas:
+
+  1010,110
+- 0011,001
+----------
+  0111,101
+
+O zero mais a esquerda pode ser retirado:
+
+resultado:
+
+1010,11(2) - 11,001(2) = 111,101(2)
+
+Conferencia em decimal:
+
+1010,11(2) = 8 + 2 + 0,5 + 0,25 = 10,75(10)
+11,001(2)  = 2 + 1 + 0,125 = 3,125(10)
+
+10,75 - 3,125 = 7,625(10)
+
+111,101(2) = 4 + 2 + 1 + 0,5 + 0,125
+= 7,625(10)
+
+
+
+c.) 101,111(2) * 10,011(2) = X(2)
+
+Cada operando possui tres casas fracionarias.
+
+Primeiro retiramos temporariamente as virgulas:
+
+101111 * 10011
+
+Multiplicacao binaria:
+
+       0000101111
+       0001011110
+       0000000000
+       0000000000
+     + 1011110000
+     ------------
+       1101111101
+
+Como retiramos tres casas fracionarias de cada operando,
+o resultado deve ter seis casas fracionarias:
+
+1101111101
+separando seis casas da direita:
+
+1101,111101
+
+resultado:
+
+101,111(2) * 10,011(2) = 1101,111101(2)
+
+Conferencia em decimal:
+
+101,111(2) = 5,875(10)
+10,011(2)  = 2,375(10)
+
+5,875 * 2,375 = 13,953125(10)
+
+1101,111101(2)
+
+= 8 + 4 + 1 + 1/2 + 1/4 + 1/8 + 1/32 + 1/64
+= 13,953125(10)
+
+
+
+d.) 10100,01(2) / 11,01(2) = X(2)
+
+Os dois operandos possuem duas casas fracionarias.
+Podemos deslocar a virgula duas casas nos dois numeros,
+sem alterar o valor da divisao:
+
+10100,01(2) / 11,01(2)
+
+= 1010001(2) / 1101(2)
+
+Fazendo a divisao inteira inicial:
+
+1010001(2) / 1101(2)
+
+1010001(2) = 81(10)
+1101(2)    = 13(10)
+
+81 / 13 = 6, resto 3
+
+6(10) = 110(2)
+3(10) = 11(2)
+
+Agora continuamos a divisao usando o resto para obter
+os bits da parte fracionaria. A cada passo multiplicamos
+o resto por 2 e verificamos se ele e maior ou igual a 13:
+
+resto 3  * 2 = 6  -> bit 0, novo resto 6
+resto 6  * 2 = 12 -> bit 0, novo resto 12
+resto 12 * 2 = 24 -> bit 1, novo resto 11
+resto 11 * 2 = 22 -> bit 1, novo resto 9
+resto 9  * 2 = 18 -> bit 1, novo resto 5
+resto 5  * 2 = 10 -> bit 0, novo resto 10
+resto 10 * 2 = 20 -> bit 1, novo resto 7
+resto 7  * 2 = 14 -> bit 1, novo resto 1
+resto 1  * 2 = 2  -> bit 0, novo resto 2
+resto 2  * 2 = 4  -> bit 0, novo resto 4
+resto 4  * 2 = 8  -> bit 0, novo resto 8
+resto 8  * 2 = 16 -> bit 1, novo resto 3
+
+O resto voltou a ser 3, portanto a sequencia se repete:
+
+001110110001
+
+resultado:
+
+10100,01(2) / 11,01(2) = 110,(001110110001)...(2)
+
+Conferencia em decimal:
+
+10100,01(2) = 20,25(10)
+11,01(2)    = 3,25(10)
+
+20,25 / 3,25 = 81/13
+= 6,230769230769...(10)
+
+
+
+e.) 1100001(2) % 1101(2) = X(2)
+
+O operador % representa o resto da divisao inteira.
+
+Convertendo para decimal para conferir:
+
+1100001(2)
+
+= 1*2⁶ + 1*2⁵ + 0*2⁴ + 0*2³ + 0*2² + 0*2¹ + 1*2⁰
+=                 64 + 32 + 1
+=                    97(10)
+
+1101(2)
+
+= 1*2³ + 1*2² + 0*2¹ + 1*2⁰
+=         8 + 4 + 1
+=           13(10)
+
+97 / 13 = 7, resto 6
+
+6(10) = 110(2)
+
+resultado:
+
+1100001(2) % 1101(2) = 110(2)

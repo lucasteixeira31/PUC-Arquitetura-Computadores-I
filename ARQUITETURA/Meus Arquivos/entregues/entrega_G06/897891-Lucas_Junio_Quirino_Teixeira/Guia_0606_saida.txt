@@ -1,0 +1,31 @@
+Guia_0606 - Tests
+
+Circuito original:
+s = w1 + w2
+
+Forma canonica:
+s(x,y,w,z) = Pi M(0,1,2,3,4,5,6,7,15)
+
+Forma simplificada:
+s = x.(y' + w' + z')
+
+x y w z | Original Simplificada
+-------------------------------
+0 0 0 0 |    0         0
+0 0 0 1 |    0         0
+0 0 1 0 |    0         0
+0 0 1 1 |    0         0
+0 1 0 0 |    0         0
+0 1 0 1 |    0         0
+0 1 1 0 |    0         0
+0 1 1 1 |    0         0
+1 0 0 0 |    1         1
+1 0 0 1 |    1         1
+1 0 1 0 |    1         1
+1 0 1 1 |    1         1
+1 1 0 0 |    1         1
+1 1 0 1 |    1         1
+1 1 1 0 |    1         1
+1 1 1 1 |    0         0
+
+Maxtermos esperados com s = 0: 0,1,2,3,4,5,6,7,15
