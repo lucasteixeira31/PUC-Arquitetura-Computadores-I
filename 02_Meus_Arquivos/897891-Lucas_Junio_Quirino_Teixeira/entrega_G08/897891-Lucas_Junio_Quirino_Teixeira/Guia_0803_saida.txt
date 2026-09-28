@@ -1,0 +1,5 @@
+Guia_0803 - Lucas Junio Quirino Teixeira - 897891
+Test Comparator (Equality 5 bits)
+
+00101 == 00101 -> Resultado: 1
+00101 == 00100 -> Resultado: 0

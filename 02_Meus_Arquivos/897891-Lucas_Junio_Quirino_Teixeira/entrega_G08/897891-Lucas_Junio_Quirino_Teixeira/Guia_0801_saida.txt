@@ -1,0 +1,6 @@
+Guia_0801 - Lucas Junio Quirino Teixeira - 897891
+Test ALU's full adder (5 bits)
+
+00010 + 00011 (cin=0) = 000101
+00101 + 00101 (cin=0) = 001010
+01111 + 00001 (cin=0) = 010000

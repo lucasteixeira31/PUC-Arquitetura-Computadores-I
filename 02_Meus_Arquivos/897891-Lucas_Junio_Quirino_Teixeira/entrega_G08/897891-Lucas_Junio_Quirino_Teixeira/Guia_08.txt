@@ -1,0 +1,89 @@
+
+Pontifícia Universidade Católica de Minas Gerais
+Instituto de Ciências Exatas e Informática - ICEI
+Arquitetura de Computadores I
+Guia 08 - Introdução à linguagem Verilog e Unidades Lógicas e Aritméticas
+Nome: Lucas Junio Quirino Teixeira
+Matrícula: 897891
+
+
+
+Exercício 01 (Guia_0801.v)
+Unidade Aritmética - Somador Completo de 5 bits
+
+
+
+Descrição:
+Projeto e descrição em Verilog de uma unidade aritmética (AU) composta por um
+somador completo para operandos de 5 bits (1 bit de sinal + 4 bits de amplitude).
+A arquitetura foi estruturada utilizando o modelo compacto de meia-soma (halfAdder)
+como módulo base para a construção do somador completo (fullAdder) e encadeada em 5 bits.
+
+Código Fonte: Guia_0801.v
+Resultados obtidos via terminal: Guia_0801_saida.txt
+
+
+
+Exercício 02 (Guia_0802.v)
+Unidade Aritmética - Subtrator Completo de 5 bits
+
+
+
+Descrição:
+Projeto e descrição em Verilog de uma unidade aritmética (AU) composta por um
+subtrator completo para operandos de 5 bits (1 bit de sinal + 4 bits de amplitude).
+A solução utiliza o modelo compacto de meia-diferença (halfDifference) para compor
+o subtrator completo (fullDifference), cascateado em 5 bits com propagação do empréstimo (borrow).
+
+Código Fonte: Guia_0802.v
+Resultados obtidos via terminal: Guia_0802_saida.txt
+
+
+
+Exercício 03 (Guia_0803.v)
+Unidade Lógica - Comparador de Igualdade de 5 bits
+
+
+
+Descrição:
+Projeto de unidade lógica (LU) com comparador para igualdade em operandos de 5 bits.
+Implementado através da comparação bit a bit com portas XNOR e combinação dos
+resultados em uma porta AND global (a == b indica saída 1 quando todos os bits coincidem).
+
+Código Fonte: Guia_0803.v
+Resultados obtidos via terminal: Guia_0803_saida.txt
+
+
+
+Exercício 04 (Guia_0804.v)
+Unidade Lógica - Comparador de Desigualdade de 5 bits
+
+
+
+Descrição:
+Projeto de unidade lógica (LU) para verificação de diferença/desigualdade de 5 bits.
+Implementado com portas XOR bit a bit agregadas por uma porta OR global (a != b indica
+saída 1 se pelo menos um bit for distinto).
+
+Código Fonte: Guia_0804.v
+Resultados obtidos via terminal: Guia_0804_saida.txt
+
+
+Exercício 05 (Guia_0805.v)
+Unidade Lógica - Complemento de 2 de 5 bits
+
+
+Descrição:
+Projeto de unidade lógica (LU) para cálculo do complemento de 2 de uma palavra
+binária de 5 bits. O circuito calcula o complemento de 1 através da inversão de
+cada bit (portas NOT) e efetua a adição de +1 utilizando a estrutura de somador completo.
+
+Código Fonte: Guia_0805.v
+Resultados obtidos via terminal: Guia_0805_saida.txt
+
+
+Observações Globais:
+
+* Todos os programas foram descritos e testados utilizando a ferramenta Icarus Verilog.
+* Os resultados e testes foram redirecionados para seus respetivos arquivos de saída (_saida.txt).
+

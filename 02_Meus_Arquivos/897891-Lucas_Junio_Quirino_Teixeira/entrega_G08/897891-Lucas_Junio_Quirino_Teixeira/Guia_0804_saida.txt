@@ -1,0 +1,5 @@
+Guia_0804 - Lucas Junio Quirino Teixeira - 897891
+Test Comparator (Inequality 5 bits)
+
+00101 != 00101 -> Resultado: 0
+00101 != 00100 -> Resultado: 1

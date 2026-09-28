@@ -1,0 +1,5 @@
+Guia_0805 - Lucas Junio Quirino Teixeira - 897891
+Test Two's Complement (5 bits)
+
+Complemento de 2 de 00001 = 11111
+Complemento de 2 de 00100 = 11100

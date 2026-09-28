@@ -1,0 +1,6 @@
+Guia_0802 - Lucas Junio Quirino Teixeira - 897891
+Test ALU's full subtractor (5 bits)
+
+00101 - 00011 (bin=0) = 00010 (bout=0)
+01000 - 00010 (bin=0) = 00110 (bout=0)
+00010 - 00100 (bin=0) = 11110 (bout=1)
